@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery实现ajax</title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        function func() {
+            $.get("ajaxServlet",
+                {"username": "tom"},
+                function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                },
+                "text"
+            );
+        }
+
+        /*function func() {
+            $.ajax({
+                url: "ajaxServlet",
+                type: "post",
+                //data:"username=tom&age=23",
+                data: {"username": "tom", "age": "23"},
+                success: function (data, status) {
+                    //响应成功的回调函数
+                    alert(data + status);
+                },
+                error: function () {
+                    //出错的回调函数
+                    alert("出错了")
+                },
+                dataType: "text"
+            });
+        }*/
+    </script>
+
+</head>
+<body>
+<input type="button" value="发送异步请求" onclick="func ()">
+<input type="text" id="myTxt">
+</body>
+</html>

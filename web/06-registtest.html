@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户名校验</title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+
+            $("#username").blur(function () {
+                var un = $(this).val();
+                $.get("findUserServlet",
+                    {"username": un},
+                    function (data, status) {
+                        if (data.userExist) {
+                            $("#lb").css("color", "Green");
+                            $("#lb").html(data.msg);
+                        } else {
+                            $("#lb").css("color", "red");
+                            $("#lb").html(data.msg);
+                            //alert("Data: " + data + "\nStatus: " + status);
+                        }
+                    },
+                    "json"
+                );
+            })
+        })
+    </script>
+</head>
+<body>
+用户名：<input type="text" id="username"><span id="lb">sfgfdgfdg</span>
+</body>
+</html>
